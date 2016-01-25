@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <!--[if lt IE 9]>
+    <script src="js/lib/html5shiv.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>注册-senzflow</title>
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container-fluid top">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="logo-txt"><h1>senzflow</h1></a>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse head">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="javascript:;" onclick="gotoControl('control/service.html')">管理控制台</a></li>
+                <li><a href="../index.html">解决方案</a></li>
+                <li><a href="document.html">文档中心</a></li>
+                <li><a href="download.html">下载中心</a></li>
+                <li class="login-in"><a href="login.html">登录</a></li>
+                <li class="register"><a href="register.html">注册</a></li>
+                <li class="user" style="display: none"></li>
+                <li class="login-out" style="display: none"><a href="/ucenter/user/logout.do">退出</a></li>
+                <li class="dropdown" role="presentation" style="display: none">
+                    <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
+                        中文 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">中文</a></li>
+                        <li><a href="#">英文</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+
+<div class="login">
+    <div class="login-top">
+        <span>注册</span>
+    </div>
+    <form id="register-form" action="/ucenter/register.do">
+        <div id="error-msg" class="error-tip alert alert-danger" style="display: none"></div>
+        <div class="form-group">
+            <input type="email" name="email" datatype="e" nullmsg="邮箱不能为空" errormsg="邮箱错误" class="form-control" placeholder="邮箱">
+            <span class="emailTips"></span>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="md5Value">
+            <input type="password" name="password" class="form-control" datatype="*6-16" nullmsg="请设置密码！" placeholder="密码">
+            <span></span>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" placeholder="确认密码">
+            <span></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" datatype="*" name="contact" placeholder="联系人">
+            <span></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="tel" datatype="m" nullmsg="手机不能为空" errormsg="手机号码错误" placeholder="电话">
+            <span></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="company" nullmsg="公司名称" placeholder="公司名称">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-6">
+                    <input type="text" name="verifyCode" datatype="*" nullmsg="验证码不能为空" class="form-control" placeholder="验证码">
+                    <span></span>
+                </div>
+                <div class="col-xs-3">
+                    <img src="/ucenter/ptcha.do?" id="yzm">
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="language" value="zh">
+            <div class="checkbox" style="overflow: hidden">
+                <label class="pull-left">
+                    <input type="checkbox" id="agree" checked> 同意
+                </label>
+                <a href="service-clause.html" class="pull-left"> 服务条款</a>
+                <a href="login.html" class="pull-right">已经有账户</a>
+            </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-block">提交</button>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal-footer ft-modal-footer">
+    <div class="footer">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="./contactUs.html">联系我们</a><em>|</em>
+                <a href="./service-clause.html">服务条款</a>
+            </div>
+            <div class="col-md-8">
+                <span>&copy;SenzFlow 粤ICP备08007738号-10<label id="nowyear">2016</label> All Rights Reserved</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/Validform.js"></script>
+<script src="js/lib/md5.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/utils.js"></script>
+<script>
+    function getVerificationCode(){
+        $("#yzm").attr("src","/ucenter/ptcha.do?t="+Date.now())
+    }
+    getVerificationCode();
+   $("#yzm").on("click",function(){
+       getVerificationCode();
+   })
+    var buyform= $("#register-form").Validform({
+        tiptype:function(msg,o,cssctl){
+            if(!o.obj.is("form")){
+                var objtip=o.obj.parent().find("span");
+                cssctl(objtip,o.type);
+                if(objtip.hasClass("Validform_wrong")){
+                    objtip.text(msg).show();
+                }else{
+                    objtip.hide();
+                }
+            }
+        },
+        ajaxPost:true,
+        postonce:true,
+        beforeSubmit:function(curform){
+           // $("#md5Value").val(hex_md5($("input[name='password']").val()));
+            console.log($("input[name='password']").val());
+            console.log($("input[name='email']").val());
+            var data={
+                "email":$("input[name='email']").val(),
+                "password":hex_md5($("input[name='password']").val()),
+                "contact":$("input[name='contact']").val(),
+                "tel":$("input[name='tel']").val(),
+                "company":$("input[name='company']").val(),
+                "verifyCode":$("input[name='verifyCode']").val(),
+                "language":$("input[name='language']").val(),
+            };
+            buyform.config({
+                ajaxpost:{
+                    //可以传入$.ajax()能使用的，除dataType外的所有参数;
+                    contentType:"application/json",
+                    data:JSON.stringify(data),
+                    success:function(data,textStatus,xhr){
+                        $("#error-msg").html(data._message).show();
+                        if(utils.getRequest().info){
+                            postExtraMessage(utils.getRequest().info)
+                        }else{
+                            location.href="./register-result.html?email="+$("input[name='email']").val();
+                        }
+                    },
+                    error:function(xhr,textStatus,errorThrown){
+                        var response = eval("("+xhr.responseText+")");
+                        $("#error-msg").html(response._message).show();
+                    },
+                    complete:function(xhr,textStatus){
+                        $(".btn-success").html("提交");
+                    }
+                }
+
+            });
+            if(!$('#agree').is(':checked')) {
+                alert("你要同意服务条款")
+                return false;
+            }
+        },
+        callback:function(data){
+
+        }
+    });
+
+
+
+   $("input[name='email']").on("blur",function(){
+       $.ajax({
+           url: "/ucenter/checkEmailRegisted.do",
+           type:"post",
+           contentType:"application/json",
+           data:'{"email":"'+ $.trim($("input[name='email']").val())+'"}',
+           success: function(data){
+           },
+           error:function(xhr,textStatus,errorThrown){
+               var response = eval("("+xhr.responseText+")");
+               $(".emailTips").addClass("Validform_checktip Validform_wrong").removeClass("Validform_right").html(response._message).show();
+           }
+       })
+   })
+
+
+
+   function postExtraMessage(value){
+       $.ajax({
+           url: "/ucenter/getExtraMessage.do?key="+value,
+           dataType: "json",
+           //contentType:'application/json',
+           success: function(data){
+               //utils.alertMsgTip(data._message)
+               location.href="./register-result.html?email="+$("input[name='email']").val();
+           },
+           error:function(xhr,textStatus,errorThrown){
+               var response = eval("("+xhr.responseText+")");
+               utils.alertMsgTip(response._message)
+           }
+       })
+   }
+
+</script>
+</body>
+</html>

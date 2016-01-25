@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>消息主题</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="dataFlow">
+<!--
+    <div class="dataFlow-top">
+      <div class="btn-group" role="group">
+        <div class="btn-group" role="group">
+            <a href="./data-stream.html" show="dataFlow" class="btn btn-default">数据流</a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="./data-rule.html" show="dataRule" class="btn btn-default">规则</a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="./data-topic.html" show="dataMsg" class="btn btn-default btn-black">消息主题</a>
+        </div>
+    </div>
+    </div>
+-->
+
+    <div class="breadcrumb">
+        <h2 class="pull-left">消息主题</h2>
+        <div class="pull-right">
+            <div class="form-inline">
+                <div class="form-group input-group-sm">
+                    <input class="form-control" name="keyword" placeholder="输入关键字">
+                </div>
+                <button class="btn btn-sm btn-success" id="btn-search" type="button">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dataFlow-hd">
+        <!--消息主题-->
+        <div id="dataMsg" class="data-item">
+<!--
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" placeholder="输入文件名" class="form-control">
+                </div>
+                <button class="btn btn-success" type="submit">查询</button>
+            </form>-->
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th width="25%">主题</th>
+                    <th width="25%">数量</th>
+                    <th width="25%">更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="list">
+
+                </tbody>
+            </table>
+
+
+            <nav id="page">
+                <ul class="pager">
+                    <li id="previous"><a href="javascript:;">上一页</a></li>
+                    <li id="next"><a href="javascript:;" onclick="goPage(1)">下一页</a></li>
+                    <li><span id="currentPage">当前第1页</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/data-topic.js"></script>
+</body>
+</html>

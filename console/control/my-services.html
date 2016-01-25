@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>我的服务</title>
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="service">
+<div class="service-bd">
+    <ol class="breadcrumb">
+        <li><a href="#">我的服务</a></li>
+    </ol>
+    <div class="panel panel-default service-bd-user">
+        <div class="panel-body">
+            <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="head">
+                        <a href="account-setting.html" class="head-user"></a>
+                    </div>
+                    <div class="info">
+                        <p id="username"></p>
+                        <p id="contact"></p>
+                        <p id="tel"></p>
+                        <p id="company"></p>
+                        <a href="account-setting.html" class="label label-primary">帐号设置</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="head">
+                        <a href="certificate.html" class="icon-safe"></a>
+                    </div>
+                    <div class="info">
+                        <p>安全证书</p>
+                        <p>数量：<span id="certs-count"></span></p>
+                        <a href="certificate.html" class="label label-primary">查看证书</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">消息(单位:条)</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 text-center"><h2 id="msg-count"></h2><p>消息总数</p></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">数据流</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4"><h2 id="rule-count"></h2><p>数据流(个)</p></div>
+                <div class="col-md-4"><h2 id="rule-inputMsg-count"></h2><p>输入消息(条)</p></div>
+                <div class="col-md-4"><h2 id="rule-outputMsg-count"></h2><p>输出消息(条)</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="display: none">
+        <div class="panel-heading">
+            <h3 class="panel-title">文件</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4"><h2>200W</h2><p>数据量</p></div>
+                <div class="col-md-4"><h2>200W</h2><p>数据量</p></div>
+                <div class="col-md-4"><h2>200W</h2><p>数据量</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">设备</h3>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center"><h2 id="devices-count"></h2><p>产品(个)</p></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/my_services.js"></script>
+</body>
+</html>

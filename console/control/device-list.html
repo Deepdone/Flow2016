@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>设备管理</title>
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="equipment">
+        <div class="breadcrumb">
+            <h2 class="pull-left"><a href="./device-list.html">设备列表</a> <span id="searchTip" style="display: none">>搜索结果</span></h2>
+            <div class="pull-right">
+                <div class="form-inline">
+                    <div class="form-group input-group-sm">
+                        <input placeholder="输入关键字" name="keyword" class="form-control">
+                    </div>
+                    <button type="button" id="btn-search" class="btn btn-sm btn-success">搜索</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>设备ID</th>
+                <th>显示名称</th>
+                <th>连接状态</th>
+                <th>备注</th>
+                <th>接入时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="list">
+           <!-- <tr>
+                <td>多少</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td><a href="device-view-detail.html" class="btn-link">进入</a></td>
+            </tr>-->
+            </tbody>
+        </table>
+
+        <nav id="page">
+            <ul class="pager">
+                <li id="previous"><a href="javascript:;">上一页</a></li>
+                <li id="next"><a href="javascript:;" onclick="goPage(1)">下一页</a></li>
+                <li><span id="currentPage">当前第1页</span></li>
+            </ul>
+        </nav>
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/device.js"></script>
+</body>
+</html>

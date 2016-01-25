@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>设备管理</title>
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="equipment">
+
+<div class="breadcrumb">
+    <h2 class="pull-left">设备管理</h2>
+
+    <div class="pull-right">
+        <form class="form-inline">
+            <div class="form-group">
+                <input placeholder="输入网关,实列" class="form-control">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 网关
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 实列
+                </label>
+            </div>
+            <button type="submit" class="btn btn-success">搜索</button>
+        </form>
+    </div>
+</div>
+
+<div class="list" id="list">
+    <div class="item">
+        <h3><span class="icon-setup"></span>设备型号-1（型号：SZE1349989-1）</h3>
+        <div class="row">
+            <div class="col-md-4">网关个数 <b>100000</b></div>
+            <div class="col-md-4">设备总数 <b>100000</b></div>
+            <div class="col-md-4">接入时间 <b>2015-11-25  18:22:58</b></div>
+        </div>
+        <a href="device-list.html" class="go-detail">点击进入</a>
+    </div>
+    <div class="item">
+        <h3><span class="icon-setup"></span>设备型号-1（型号：SZE1349989-1）</h3>
+        <div class="row">
+            <div class="col-md-4">网关个数 <b>100000</b></div>
+            <div class="col-md-4">设备总数 <b>100000</b></div>
+            <div class="col-md-4">接入时间 <b>2015-11-25  18:22:58</b></div>
+        </div>
+        <a href="device-list.html" class="go-detail">点击进入</a>
+    </div>
+    <div class="item">
+        <h3><span class="icon-setup"></span>设备型号-1（型号：SZE1349989-1）</h3>
+        <div class="row">
+            <div class="col-md-4">网关个数 <b>100000</b></div>
+            <div class="col-md-4">设备总数 <b>100000</b></div>
+            <div class="col-md-4">接入时间 <b>2015-11-25  18:22:58</b></div>
+        </div>
+        <a href="device-list.html" class="go-detail">点击进入</a>
+    </div>
+</div>
+<nav class="text-center">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script>
+
+    $.ajax({
+        url:"/device",
+        dataType:'json',
+        success: function(xhr){
+
+        }
+    })
+
+</script>
+</body>
+</html>

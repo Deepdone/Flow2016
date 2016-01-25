@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>senzflow</title>
+  </head>
+<body>
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container-fluid top">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./service.html" class="logo-txt"><h1>senzflow</h1></a>
+    </div>
+    <nav id="bs-navbar" class="collapse navbar-collapse head">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../../index.html">首页</a></li>
+        <li class="pc-control"><a href="./service.html">管理控制台</a></li>
+        <li class="wap-control">
+          <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
+            管理控制台 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="device-list.html" target="mainFrame">设备管理</a></li>
+            <li><a href="data-topic.html" target="mainFrame">消息主题</a></li>
+            <li><a href="data-rule.html" target="mainFrame">规则</a></li>
+            <li><a href="data-management.html" target="mainFrame">数据探索</a></li>
+            <li><a href="lab.html" target="mainFrame">模拟器</a></li>
+            <li><a href="my-services.html" target="mainFrame">我的服务</a></li>
+          </ul>
+        </li>
+        <li><a href="../../index.html">解决方案</a></li>
+        <li><a href="../document.html">文档中心</a></li>
+        <li><a href="../download.html">下载中心</a></li>
+        <li class="login-in"><a href="../login.html">登录</a></li>
+        <li class="register"><a href="../register.html">注册</a></li>
+        <li class="user" style="display: none"></li>
+        <li class="login-out" style="display: none"><a href="/ucenter/user/logout.do">退出</a></li>
+        <li class="dropdown" role="presentation" style="display: none">
+          <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
+            中文 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">中文</a></li>
+            <li><a href="#">英文</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li><p><a href="device-list.html" target="mainFrame">设备管理
+        <i class="api_default"></i>
+      </a></p></li>
+      <li><p><a href="data-topic.html" target="mainFrame">消息主题
+        <i class="api_default"></i>
+      </a></p></li>
+      <li><p><a href="data-rule.html" target="mainFrame">规则
+        <i class="api_default"></i>
+      </a></p></li>
+      <li style="display: none"><p><a href="data-management.html" target="mainFrame">数据探索
+        <i class="api_default"></i>
+      </a></p></li>
+      <li><p><a href="lab.html" target="mainFrame">模拟器
+        <i class="api_default"></i>
+      </a></p></li>
+      <li><p><a href="my-services.html" target="mainFrame">我的服务
+        <i class="api_default"></i>
+      </a></p></li>
+    </ul>
+  </div>
+  <div class="right" id="mainRight">
+    <iframe id="mainFrame" name="mainFrame" frameborder="no" scrolling="" src="./my-services.html"></iframe>
+  </div>
+</div>
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script>
+  $(".left li").on("click",function(){
+    $(this).addClass("current").siblings().removeClass("current")
+  })
+  $("#mainFrame").attr("src","./my-services.html");
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>数据流</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="dataFlow">
+    <div class="dataFlow-top">
+      <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+              <a href="./data-rule.html" style="width: 65px;" show="dataRule" class="btn btn-default">规则</a>
+          </div>
+          <div class="btn-group" role="group">
+              <a href="./data-stream.html" show="dataFlow" class="btn btn-default btn-black">数据流</a>
+          </div>
+    </div>
+        <div role="group" class="pull-right">
+            <button class="btn btn-default btn-success" id="btn-create-data-stream" data-toggle="modal" data-target="#myModal">新建数据流</button>
+        </div>
+    </div>
+
+
+    <div class="dataFlow-hd">
+
+        <!--数据流-->
+        <div id="dataFlow" class="data-item">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>使用方式</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="list">
+            <!--<tr>
+                <td>名称1</td>
+                <td>输入1</td>
+                <td>2015.09.11</td>
+                <td>
+                    <a href="#" class="btn-link btn-delete">删除</a>
+                    <a href="#" class="btn-link">编辑</a>
+                </td>
+            </tr>-->
+            </tbody>
+        </table>
+            <nav id="page">
+                <ul class="pager">
+                    <li id="previous"><a href="javascript:;">上一页</a></li>
+                    <li id="next"><a href="javascript:;" onclick="goPage(1)">下一页</a></li>
+                    <li><span id="currentPage">当前第1页</span></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 新建数据流 -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新建数据流</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td width="100" class="text-right text-middle">名称：</td>
+                                    <td>
+                                        <div class="input-group-sm">
+                                            <input type="text" name="name" class="form-control" placeholder="">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right text-middle">使用方式：</td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input type="radio" checked="checked" name="action-type" show="action-input" value="input"> 输入
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="action-type" show="action-output" value="output"> 输出
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="action-type" show="action-all" value="all"> 全部
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="table-wrapper" style="padding: 0">
+                                        <table class="table table-bordered " id="action-input" style="margin-bottom: 0; border: none">
+                                            <tr>
+                                                <td class="text-right text-middle" width="100" style="vertical-align: top; border: none">主题：</td>
+                                                <td style="border-top: none; border-right: none">
+                                                    <div class="form-inline" id="form-inline" style="margin-bottom: 5px;">
+                                                        <p class="addTheme"><span class="glyphicon glyphicon-plus"></span><span>添加主题</span></p>
+                                                        <div id="topic">
+                                                            <div class="item"><div class="form-group input-group-sm"><input type="text" name="input-topic" placeholder="输入主题" class="form-control"></div> </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" style="border-bottom: none">Schema：</td>
+                                                <td style="border-bottom: none">
+                                                    <textarea class="form-control" rows="3" name="input-schema" placeholder="输入json格式"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <table class="table table-bordered" id="action-output" style="margin-bottom: 0; border: none;display: none">
+                                            <tr>
+                                                <td width="100" class="text-middle" style="border-top: none">类型：</td>
+                                                <td style="border-top: none" id="btn-group">
+                                                    <button type="button" style="width: 60px;" show="MQTT" class="btn btn-info btn-xs btn-MQTT">MQTT</button>
+                                                    <button type="button" style="width: 60px;" show="HTTP" class="btn btn-link btn-xs btn-HTTP">HTTP</button>
+                                                    <button type="button" style="width: 60px;" show="EMAIL" class="btn btn-link btn-xs btn-EMAIL">EMAIL</button>
+                                                </td>
+                                            </tr>
+                                            <tr class="MQTT output-item">
+                                                <td class="text-middle">主题：</td>
+                                                <td><input type="text" name="output-topic" placeholder="" class="form-control"></td>
+                                            </tr>
+                                            <tr class="HTTP output-item" style="display: none">
+                                                <td class="text-middle">URL：</td>
+                                                <td><input type="text" name="uri" placeholder="" class="form-control"></td>
+                                            </tr>
+                                            <tr class="EMAIL output-item" style="display: none">
+                                                <td class="text-middle">收件人：</td>
+                                                <td><input type="text" name="to" placeholder="" class="form-control"></td>
+                                            </tr>
+                                            <tr class="EMAIL output-item" style="display: none">
+                                                <td class="text-middle">主题：</td>
+                                                <td><input type="text" name="subject" placeholder="" class="form-control"></td>
+                                            </tr>
+                                        </table>
+
+                                        <table class="table table-bordered" id="action-all" style="margin-bottom: 0; border: none;display: none">
+                                            <tr>
+                                                <td width="100" class="text-right text-middle">主题：</td>
+                                                <td><input type="text" name="topic" placeholder="" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" style="border-bottom: none">Schema：</td>
+                                                <td style="border-bottom: none">
+                                                    <textarea rows="3" class="form-control" name="all-schema" placeholder="输入json格式"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" id="save-data-stream">保存</button>
+                                        <button type="button" class="btn btn-success" id="update-data-stream" style="display: none">修改</button>
+                                        <button type="button" data-dismiss="modal" class="btn btn-success">取消</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <!--<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/data-stream.js"></script>
+</body>
+</html>

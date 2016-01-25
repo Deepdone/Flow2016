@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>分段消息主题</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="dataFlow">
+    <div class="breadcrumb">
+        <h2 class="pull-left">主题1</h2>
+        <div class="pull-right">
+            <form class="form-inline">
+                <span>选择时间</span>
+                <select class="form-control" id="selectType">
+                    <option value="hourly" selected="selected">过去24小时</option>
+                    <option value="daily">过去7天</option>
+                    <option value="month">过去1个月</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <div class="dataFlow-hd">
+        <!--消息主题-->
+
+        <div id="main" style="height:400px"></div>
+    </div>
+
+    <table class="table" style="width: 300px; position: absolute;right: 80px; top: 80px;">
+        <tbody id="list">
+        </tbody>
+    </table>
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/echarts/echarts.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/data-topic-statistic.js"></script>
+</body>
+</html>

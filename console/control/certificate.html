@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>安全证书</title>
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="equipment safety">
+<ol class="breadcrumb">
+    <li><a href="./my-services.html">我的服务</a></li>
+    <li><a href="javascript:;">安全证书</a></li>
+    <li class="pull-right"><button type="button" data-toggle="modal" data-target="#creat" class="btn btn-xs btn-info" id="btn-create">创建证书</button></li>
+</ol>
+
+<div class="list" id="list">
+    <div class="item" style="display: none">
+        <h3><span class="icon-safe"></span>证书-1</h3>
+        <div class="row">
+            <div class="col-md-12">设备备注</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">状态 <b>有效</b></div>
+            <div class="col-md-3">创建日期 <b>2015-4-25  18:22:58</b></div>
+            <div class="col-md-3">有效期 <b>2015-11-25  18:22:58</b></div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#"><span class="glyphicon glyphicon-download-alt"></span><b>下载证书</b></a>
+            </div>
+            <div class="col-md-3">
+                <a href="#"><span class="glyphicon glyphicon-download-alt"></span><b>下载密钥</b></a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#modify"><span class="glyphicon glyphicon-pencil"></span><b>修改备注</b></a>
+            </div>
+            <div class="col-md-3">
+                <a href="#"><span class="glyphicon glyphicon-trash"></span><b>废弃</b></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<nav id="page">
+    <ul class="pager">
+        <li id="previous"><a href="javascript:;">上一页</a></li>
+        <li id="next"><a href="javascript:;" onclick="goPage(1)">下一页</a></li>
+        <li><span id="currentPage">当前第1页</span></li>
+    </ul>
+</nav>
+
+
+<!--修改证书-->
+<div class="modal fade" id="modify">
+    <div class="modal-dialog">
+        <form class="form-horizontal" id="form_modify">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改证书</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">备注：</label>
+                        <div class="col-sm-10">
+                            <input type="text" datatype="*" class="form-control" name="modify_remarks">
+                            <span></span>
+                            <input type="hidden" name="modify_id">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="btn-submit-modify" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!--创建证书-->
+<div class="modal fade" id="creat">
+    <div class="modal-dialog">
+        <form class="form-horizontal" id="form_create" action="/certificate/">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">创建证书</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">显示名称：</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" datatype="*" nullmsg="名称不能为空" placeholder="输入名称" class="form-control"
+                                   name="name">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注：</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" datatype="*" nullmsg="备注不能为空" placeholder="输入备注" class="form-control"
+                                   name="remarks">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="btn-submit-create" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/certificate.js"></script>
+</body>
+</html>

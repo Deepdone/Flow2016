@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <!--[if lt IE 9]>
+    <script src="js/lib/html5shiv.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>echats</title>
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+<div id="add">增加</div>
+<div id="home-table" style="width: 1000px; margin: 10px auto">
+   <!-- <div class="statistic" id="topic1" val="3" style="height: 100px;"></div>
+    <div class="statistic" id="topic2" val="6" style="height: 100px;"></div>
+    <div class="statistic" id="topic3" val="9" style="height: 100px;"></div>-->
+</div>
+
+<script src="./js/lib/jquery.min.js"></script>
+<script src="./js/lib/bootstrap.min.js"></script>
+<script src="./js/echarts/echarts.js"></script>
+<!--
+<script src="./js/utils.js"></script>
+-->
+
+<script>
+
+
+    //判断2个对象值是否相等
+    function isObjectValueEqual(a, b) {
+        // Of course, we can do it use for in
+        // Create arrays of property names
+        var aProps = Object.getOwnPropertyNames(a);
+        var bProps = Object.getOwnPropertyNames(b);
+        // If number of properties is different,
+        // objects are not equivalent
+        if (aProps.length != bProps.length) {
+            return false;
+        }
+        for (var i = 0; i < aProps.length; i++) {
+            var propName = aProps[i];
+
+            // If values of same property are not equal,
+            // objects are not equivalent
+            if (a[propName] !== b[propName]) {
+                return false;
+            }
+        }
+        // If we made it this far, objects
+        // are considered equivalent
+        return true;
+    }
+
+    //判断2个对象key是否相等
+    function isObjectKeyEqual(a, b) {
+        var v1 =flatten(a);
+        var v2 =flatten(b);
+        var aProps = Object.getOwnPropertyNames(v1);
+        var bProps = Object.getOwnPropertyNames(v2);
+        if (aProps.length != bProps.length) {
+            return false;
+        }
+        for(var i=0;i<aProps.length;i++){
+            if($.inArray(aProps[i], bProps)==-1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+   // console.log(isObjectKeyEqual({a:2,b:"212"},{a:"d",b:212}))
+
+
+    require.config({
+        paths: {
+            echarts: './js/echarts'
+        }
+    });
+    var init=false;
+    var arrayData=[];
+    var arrayOption=[];
+    var arrayXAxisData=[];
+    var arraySeriesData=[];
+    var dataMsg;
+
+
+    function flatten(object) {
+        var result = {};
+        function iterate1(key, value) {
+            if (value && typeof value === 'object') {
+                iterate0(key + "_", value);
+            } else {
+                result[key] = value;
+            }
+        }
+        function iterate0(prefix, object) {
+            for (var k in object) {
+                iterate1(prefix + k, object[k]);
+            }
+        }
+        iterate0("", object);
+        return result;
+    }
+
+
+
+    //console.log(isObjectValueEqual(flatten({a:11,b:{c:12}}),flatten({a:21,b:{c:12}})))
+
+    var posMsg2={
+        topic1:1,
+        topic2:"2",
+        topic3:{"subTop1-1":134,"subTop1-2":"ccc"}
+        //topic6:{"subTop5-1":"22","subTop1-5":"ddd"}
+    }
+
+    var posMsg3={
+        topic1:1,
+        topic2:"2",
+        topic3:{"subTop1-1":134,"subTop1-2":"ccc"},
+        topic4:"吞吞吐吐",
+        topic5:{"subTop5-1":"22","subTop1-5":"ddd"}
+    }
+
+    posMsg2 =flatten(posMsg2)
+    posMsg3 =flatten(posMsg3)
+   // console.log(posMsg2)
+    function parMS(p1,p2){
+
+        var p1len= 0,p2len= 0,p1lenTemp=0,p2lenTemp=0,tempDlete={},tempAdd={};
+
+        for(n1 in p1){
+            p1len++;
+        }
+        for(n2 in p2){
+            p2len++;
+        }
+        console.log(p1len+" "+p2len)
+
+        for(n1 in p1){
+            p2lenTemp=0;
+            for(n2 in p2){
+                p2lenTemp++;
+                if(n1==n2){
+                    break;
+                }else{
+                    if(p2lenTemp==p2len){
+                        tempDlete[n1]=p1[n1]
+                    }
+                }
+            }
+        }
+
+        for(n2 in p2){
+            p1lenTemp=0;
+            for(n1 in p1){
+                p1lenTemp++;
+                if(n2==n1){
+                    break;
+                }else{
+                    if(p1lenTemp==p1len){
+                        tempAdd[n2]=p2[n2]
+                    }
+                }
+            }
+        }
+
+        var result={};
+        if($.isEmptyObject(tempDlete)){
+            result.tempDlete={}
+        }else{
+            result.tempDlete=tempDlete
+        }
+        if($.isEmptyObject(tempAdd)){
+            result.tempAdd={}
+        }else{
+            result.tempAdd=tempAdd
+        }
+
+        return result;
+    }
+
+   // console.log(parMS(posMsg2,posMsg3))
+
+    require(
+            [
+                'echarts',
+                'echarts/chart/bar',
+                'echarts/chart/line'
+            ],
+            function (ec) {
+
+               var posMsg={
+                    topic1:"VT-M2M-LV-publisher-10",
+                    topic2:300000,
+                   // topic2:"2",
+                    topic3:{"subTop1-1":"1.8","subTop1-2":"ccc"},
+                    topic4:"吞吞吐吐",
+                   // topic5:{"subTop5-1":"22","subTop1-5":"ddd"}
+               }
+
+                dataMsg = flatten(posMsg);
+
+               // console.log(dataMsg);
+
+                var buff=[];
+                for(var n in dataMsg){
+                    if(!isNaN(Number(dataMsg[n]))){
+                        console.log(dataMsg[n])
+                        buff.push('<tr><td width="150" class="text-right text-middle">'+n+'：</td><td width="800"><div class="statistic" style="height: 150px; width: 800px;" id="'+n+'" val="'+dataMsg[n]+'"></div></td><td style="font-size: 30px;" id="txt'+n+'" class="text-left text-middle"></td></tr>')
+                    }else{
+                        buff.push('<tr><td width="150" class="text-right text-middle">'+n+'：</td><td>'+dataMsg[n]+'</td><td class="text-middle"></td></tr>')
+                    }
+                }
+
+                $("#home-table").html(buff.join(''));
+
+
+
+                $(".statistic").each(function(i,n){
+                    var name=$(this).attr("id");
+                    var value=parseFloat($(this).attr("val"))
+                    arrayData.push(name)
+                    arraySeriesData[i]=[];
+                    arraySeriesData[i].push(value,value);
+                    arrayXAxisData[i]=[];
+                    arrayXAxisData[i].push("","");
+                   // console.log("name="+name+" value="+value)
+                    arrayData[i] = ec.init(document.getElementById(name));
+
+                    // ect = ec.init(document.getElementById("PAYLOAD_HUM"));
+                    arrayOption[i]={
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        timeline:false,
+                        grid:{
+                            borderWidth:0,
+                            x:20,
+                            y:15,
+                            x2:20,
+                            y3:15
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : arrayXAxisData[i],
+                                axisLabel:{
+                                    //  interval:3//间隔
+                                },
+                                boundaryGap:false,
+                                show:false
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                show:false,
+                            }
+                        ],
+                        series : [
+                            {
+                                name:name,
+                                type:'line',
+                                itemStyle: {
+                                    normal: {
+                                        color:"#6CD7D9"
+                                    }
+                                },
+                                symbol:"none",//不显示标志图形即可
+                                data:arraySeriesData[i]
+                            }
+                        ]
+                    }
+                    arrayData[i].setOption(arrayOption[i]);
+                })
+            }
+    );
+
+    $("#add").on("click",function(){
+        var len=arrayData.length;
+        for(var i=0;i<len;i++){
+          // console.log(arrayXAxisData[i].length+" ： "+len+" ： "+i)
+           if(arrayXAxisData[i].length==50){
+               console.log(arrayXAxisData[i].length)
+
+                arraySeriesData[i].push(parseInt(Math.random()*100000));
+
+               var len=arraySeriesData[i].length-1;
+               arrayData[i].addData([
+                   [
+                       0,        // 系列索引
+                       arraySeriesData[i][len], // 新增数据
+                       false,     // 新增数据是否从队列头部插入
+                       false     // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                   ]
+               ]);
+
+            }else{
+               arraySeriesData[i].push(parseInt(Math.random()*100000));
+                arrayXAxisData[i].push("");
+                arrayData[i].setOption({
+                    xAxis : [
+                        {
+                            data : arrayXAxisData[i]
+                        }
+                    ],
+                    series : [
+                        {
+                            data:arraySeriesData[i]
+                        }
+                    ]
+                })
+               console.log(arraySeriesData[i]+" "+arrayXAxisData[i])
+              // console.log(arrayXAxisData[i].length)
+
+           }
+
+        }
+
+    })
+
+</script>
+
+</body>
+</html>

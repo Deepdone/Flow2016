@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <!--[if lt IE 9]>
+    <script src="js/lib/html5shiv.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>去激活-senzflow</title>
+</head>
+<body class="sendEmail">
+
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container-fluid top">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="logo-txt"><h1>senzflow</h1></a>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse head">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="javascript:;" onclick="gotoControl('control/service.html')">管理控制台</a></li>
+                <li><a href="../index.html">解决方案</a></li>
+                <li><a href="document.html">文档中心</a></li>
+                <li><a href="download.html">下载中心</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+                <li class="dropdown" role="presentation" style="display: none">
+                    <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
+                        中文 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">中文</a></li>
+                        <li><a href="#">英文</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+
+<div class="login">
+
+            <input type="hidden" name="email" value="">
+            <input type="hidden" name="language">
+            <p class="msg"><img src="img/prompt2_y.jpg"> 我们已将激活邮件发送到你的注册邮箱,请登录邮箱激活！</p>
+       <div class="sendEmailButton">
+        <button type="button" class="btn btn-info" style="display: none">立即登入邮箱</button>
+         <span>没收到？</span>
+         <button type="button" class="btn btn-success">重新发送(<span id="timeOut">60</span>)</button>
+       </div>
+</div>
+
+<div class="modal-footer ft-modal-footer">
+    <div class="footer">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="./contactUs.html">联系我们</a><em>|</em>
+                <a href="./service-clause.html">服务条款</a>
+            </div>
+            <div class="col-md-8">
+                <span>&copy;SenzFlow 粤ICP备08007738号-10<label id="nowyear">2016</label> All Rights Reserved</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/lib/Validform.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script>
+    $("input[name='email']").val(utils.getRequest().email);
+    var num=parseInt($("#timeOut").html());
+    var timeInter=setInterval(function(){
+        if(num==1){
+            clearInterval(timeInter);
+            $(".btn-success").html("点击重新发送");
+            $(".btn-success").addClass("btn-submit");
+            return;
+        }
+        num--;
+        $("#timeOut").html(num)
+    },1000)
+
+    $("body").on("click",".btn-submit",function(){
+        var data={
+            email:$("input[name='email']").val(),
+            language:"zh"
+        }
+        $.ajax({
+            url:"/ucenter/resendActiveUser.do",
+            dataType:'json',
+            type:'post',
+            contentType:"application/json",
+            data:JSON.stringify(data),
+            success: function(data){
+             utils.alertMsgTip("重新发送成功");
+                num=60;
+             $(".btn-success").html('重新发送(<span id="timeOut">'+num+'</span>)').removeClass("btn-submit");
+
+                timeInter=setInterval(function(){
+                    if(num==1){
+                        clearInterval(timeInter);
+                        $(".btn-success").html("点击重新发送");
+                        $(".btn-success").addClass("btn-submit");
+                        return;
+                    }
+                    num--;
+                    $("#timeOut").html(num)
+                },1000)
+
+             //$(".btn-link").removeClass("btn-submit");
+            },
+            error:function(xhr,textStatus,errorThrown){
+                var response = eval("("+xhr.responseText+")");
+                $(".btn-success").html(response._message);
+            }
+        })
+
+    })
+
+</script>
+</body>
+</html>

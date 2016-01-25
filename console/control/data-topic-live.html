@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>分段消息主题</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="dataFlow">
+    <div class="breadcrumb">
+        <h3 style="padding: 5px">topic</h3>
+    </div>
+
+    <div class="dataFlow-hd">
+        <div id="eChartsShow">
+            <ul role="tablist" class="nav nav-tabs" id="myTabs">
+                <li class="active" role="presentation">
+                    <a aria-expanded="true" aria-controls="home" data-toggle="tab" role="tab" id="home-tab" href="#home">可视图</a>
+                </li>
+                <li role="presentation" class="">
+                    <a aria-controls="profile" data-toggle="tab" id="profile-tab" role="tab" href="#profile" aria-expanded="false">原始数据</a>
+                </li>
+               <!-- <li role="presentation" class="">
+                    <a href="javascript:;" onclick="clearDate()" class="btn btn-link">清除</a>
+                </li>-->
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div aria-labelledby="home-tab" id="home" class="tab-pane fade active in" role="tabpanel">
+                    <table id="home-table" class="table">
+                    </table>
+                </div>
+                <div aria-labelledby="profile-tab" id="profile" class="tab-pane fade" role="tabpanel">
+                    <table class="table">
+                        <tr>
+                            <td><pre id="message" style="padding: 10px;"></pre></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/echarts/echarts.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/data-topic-live.js"></script>
+</body>
+</html>

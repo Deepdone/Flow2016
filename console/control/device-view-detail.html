@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>设备管理</title>
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="equipment">
+
+<ol class="breadcrumb">
+    <li><a href="#">设备管理</a></li>
+    <li><a href="#">查看设备</a></li>
+</ol>
+
+
+<div class="row">
+
+
+
+
+     <!--设备详情-->
+    <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2 class="panel-title">设备详情</h2></div>
+                <div class="panel-body">
+                    <table class="table" style="margin-bottom: 0">
+                        <tbody>
+                        <tr>
+                            <td class="text-right" width="90" style="border-top: none">设备名称：</td>
+                            <td style="border-top: none"><span id="device-name"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">编号：</td>
+                            <td><span id="device-id"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">接入日期：</td>
+                            <td><span id="created"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">连接状态：</td>
+                            <td>
+                                <!--离线<span class="glyphicon glyphicon-repeat"></span>-->
+                                <span id="device-status"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+
+    <!--设备配置列表-->
+
+    <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="panel-title">设备配置列表</span> <a data-target="#myModal" data-toggle="modal" href="#" id="addConfig"><span class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="panel-body">
+                    <table class="table" style="margin-bottom: 0;">
+                        <thead>
+                        <tr>
+                            <th>显示名称</th>
+                            <th>名称</th>
+                            <th>值</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="configureList">
+                       <!-- <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+    </div>
+
+
+    <!--设备状态列表-->
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title">设备状态列表</h2></div>
+            <div class="panel-body">
+                <table class="table" style="margin-bottom: 0;">
+                    <thead>
+                    <tr>
+                        <th>显示名称</th>
+                        <th>名称</th>
+                        <th>值</th>
+                        <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody id="statusList">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--执行设备控制-->
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title">执行设备控制</h2></div>
+            <div class="panel-body">
+                <table class="table" style="margin-bottom: 0;">
+                   <tr>
+                       <td width="100" class="text-right text-middle" style="border-top: none;">命令：</td>
+                       <td style="border-top: none;"><input type="text" placeholder="请输入名称" name="execute-name" class="form-control"></td>
+                   </tr>
+                    <tr>
+                        <td class="text-right text-middle">参数：</td>
+                        <td><input type="text" placeholder="多个参数用空格分开" name="args" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" id="btn-execute" class="btn btn-success">确定</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="col-md-12">
+     <div class="device-info">
+       <table class="table">
+        <tbody>
+        <tr>
+            <th colspan="2">状态列表<span class="glyphicon glyphicon-repeat"></span></th>
+        </tr>
+        <tr>
+            <td width="120" class="text-right">最新发布：</td>
+            <td>31212121</td>
+        </tr>
+        <tr>
+            <td class="text-right">更新时间：</td>
+            <td>2015.09.11</td>
+
+        </tr>
+        <tr>
+            <td class="text-right">运行时间：</td>
+            <td>2015.09.11</td>
+        </tr>
+        <tr>
+            <th colspan="2">配置<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></a></th>
+        </tr>
+        <tr>
+            <td class="text-right">状态更新周期：</td>
+            <td>
+                <div class="device-remark-wrapper">
+                    <span class="device-remark pull-left">这个网关很重要</span>
+                    <input style="display: none; width: 80%" type="text" class="device-remark-edit" class="form-control pull-left" value="这个网关很重要" style="width: 80%">
+                    <span class="glyphicon glyphicon-pencil pull-left"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-ok" style="display: none"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">报告周期：</td>
+            <td>
+                <div class="device-remark-wrapper">
+                    <span class="pull-left device-remark">这个网关很重要</span>
+                    <input style="display: none; width: 80%" type="text" class="device-remark-edit form-control pull-left" value="这个网关很重要" style="width: 80%">
+                    <span class="glyphicon glyphicon-pencil pull-left"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-ok" style="display: none"></span>
+                   &lt;!&ndash; <div class="pull-left operate-wrapper">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+
+                    <div class="pull-left save-wrapper" style="display: none">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </div>&ndash;&gt;
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">其它配置项：</td>
+            <td>
+                <div class="device-remark-wrapper">
+                    <span class="pull-left device-remark">这个网关很重要</span>
+                    <input style="display: none; width: 80%" type="text" class="device-remark-edit form-control pull-left" value="这个网关很重要">
+                    <span class="glyphicon glyphicon-pencil pull-left"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-ok" style="display: none"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">操作<a href="#" data-toggle="modal" data-target="#myModa2"><span class="glyphicon glyphicon-plus"></span></a></th>
+        </tr>
+        <tr>
+            <td class="text-right">复位：</td>
+            <td><span class="glyphicon glyphicon-sort"></span><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        </tbody>
+    </table>
+     </div>
+    </div>-->
+</div>
+
+
+
+
+<!-- 增加配置设备 -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="my-title">增加设备配置</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">显示名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="display" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">key</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="name" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Value</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="value" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btn-save">保存</button>
+                <button type="button" class="btn btn-primary" id="btn-update" style="display: none">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+
+
+<!-- 增加操作 -->
+<div class="modal fade" id="myModa2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">增加操作</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">显示名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="display" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">key</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="name" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Value</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="value" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btn-save2">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/device-detail.js"></script>
+<script>
+$(".glyphicon-pencil").on("click",function(){
+    var parent = $(this).parent();
+    parent.find(".device-remark").hide();
+    parent.find(".device-remark-edit").show();
+    parent.find(".glyphicon-ok").show();
+    $(this).hide();
+})
+
+$(".glyphicon-remove").on("click",function(){
+    var parent = $(this).parent();
+    parent.find(".device-remark").hide();
+    parent.find(".device-remark-edit").show();
+    parent.find(".glyphicon-ok").show();
+    $(this).hide();
+})
+
+$(".glyphicon-ok").on("click",function(){
+    var parent = $(this).parent();
+    parent.find(".device-remark").show();
+    parent.find(".device-remark-edit").hide();
+    parent.find(".glyphicon-pencil").show();
+    $(this).hide();
+})
+
+</script>
+</body>
+</html>

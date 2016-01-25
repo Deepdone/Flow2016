@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="../js/lib/html5shiv.min.js"></script>
+    <script src="../js/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>规则</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body class="dataFlow">
+    <div class="dataFlow-top">
+      <div class="btn-group" role="group">
+
+          <div class="btn-group" role="group">
+              <a href="./data-rule.html" style="width: 65px;" show="dataRule" class="btn btn-default btn-black">规则</a>
+          </div>
+          <div class="btn-group" role="group">
+              <a href="./data-stream.html" show="dataFlow" class="btn btn-default">数据流</a>
+          </div>
+
+    </div>
+
+        <div role="group" class="pull-right">
+            <button class="btn btn-default btn-success" id="create-rule" data-toggle="modal" data-target="#myModal">新建规则</button>
+        </div>
+
+    </div>
+
+
+    <div class="dataFlow-hd">
+
+        <!--规则-->
+        <div id="dataRule" class="data-item">
+         <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>状态</th>
+                <th>创建日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="list">
+            <!--<tr>
+                <td>名称1</td>
+                <td>输入1</td>
+                <td>2015.09.11</td>
+                <td>
+                    <a href="#" class="btn-link">启动</a>
+                    <a href="#" class="btn-link">编辑</a>
+                    <a href="#" class="btn-link">删除</a>
+                </td>
+            </tr>-->
+            </tbody>
+        </table>
+
+            <nav id="page">
+                <ul class="pager">
+                    <li id="previous"><a href="javascript:;">上一页</a></li>
+                    <li id="next"><a href="javascript:;" onclick="goPage(1)">下一页</a></li>
+                    <li><span id="currentPage">当前第1页</span></li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <!--新建规则-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新建规则</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="xxx">
+                            <div id="createdataRule" class="data-item">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td width="120">名称：</td>
+                                        <td><input type="text" name="name" class="form-control" placeholder="输入规则名称"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="120">规则定义语句：</td>
+                                        <td style="position: relative">
+                                            <textarea class="form-control" name="compute" rows="5"></textarea>
+                                            <div class="table-list" id="rule-list-from" style="display: none">
+                                                <ul>
+
+                                                </ul>
+                                            </div>
+
+                                            <div class="table-list" id="rule-list-into" style="display: none">
+                                                <ul>
+
+                                                </ul>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="120"></td>
+                                        <td>
+                                            <div class="">
+                                            <button type="button" class="btn btn-success" id="btn-debug">调试</button>
+                                            <button type="button" class="btn btn-warning" id="btn-stop-debug" style="display: none">停止调试</button>
+                                            <button type="button" class="btn btn-success" id="btn-save">确定</button>
+                                            <button type="button" class="btn btn-success" id="btn-update">修改</button>
+                                            <button type="button" data-dismiss="modal" class="btn btn-success">取消</button>
+                                            </div>
+                                            <div class="rule-result" style="margin-top: 10px;">
+                                                <pre style="padding: 2px 10px;display: none" id="pre-rule-result"></pre>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/Validform.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/jquery.caret.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/data-rule.js"></script>
+</body>
+</html>
